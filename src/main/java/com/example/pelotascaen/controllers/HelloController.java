@@ -27,6 +27,13 @@ public class HelloController implements Observer {
     @FXML
     private ImageView pueEmo;
 
+    @FXML
+    private Button btnLeft;
+
+    @FXML
+    private Button btnRight;
+
+
     private Circle circulo1;
     private CaePelota moverCirculo1;
 
@@ -34,6 +41,8 @@ public class HelloController implements Observer {
 
     @FXML
     void btnIniciarOnMouse(MouseEvent event) {
+
+
         moverCirculo1 = new CaePelota();
         moverCirculo1.setPelotaPos(new Pelota(1,30,28));
         moverCirculo1.addObserver(this);
@@ -41,17 +50,15 @@ public class HelloController implements Observer {
         hilo1.start();
         System.out.println("paso aqui");
 
-    }
-    @FXML
-    void btnIniciarPouOnMouse(MouseEvent event) {
         moverPou =  new MovePou();
-        moverPou.setPouPos(new Pou(2,180,564));
+        moverPou.setPouPos(new Pou(2,143,525));
         moverPou.addObserver(this);
         Thread hilo2 = new Thread(moverPou);
         hilo2.start();
         System.out.println("paso aqui 2");
-    }
 
+
+    }
     @FXML
     void btnPrepararOnMouse(MouseEvent event) {
         circulo1 = new Circle(10);
@@ -59,6 +66,18 @@ public class HelloController implements Observer {
         circulo1.setLayoutX(29);
         rootScene.getChildren().add(circulo1);
 
+    }
+    @FXML
+    void btnLeftOnMouse(MouseEvent event) {
+        moverPou.setRight(true);
+        moverPou.setRightCam();
+        System.out.println("pasooooooo");
+    }
+    @FXML
+    void btnRightOnMouse(MouseEvent event) {
+        moverPou.setLeftCam();
+        moverPou.setLeft(true);
+        System.out.println("paso a paso");
     }
 
     @Override

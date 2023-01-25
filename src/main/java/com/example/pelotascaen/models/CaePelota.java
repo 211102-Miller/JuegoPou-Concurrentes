@@ -16,7 +16,7 @@ public class CaePelota extends Observable implements Runnable{
     @Override
     public void run() {
         while (status){
-            pelotaPos.setY(pelotaPos.getY() + 3);
+            pelotaPos.setY(pelotaPos.getY() + 4);
             setChanged();
             notifyObservers(pelotaPos);
             try {
@@ -26,9 +26,11 @@ public class CaePelota extends Observable implements Runnable{
             }
 
         }
+        System.out.println("pasooo");
 
     }
     public void setStatus(boolean status){
         this.status=status;
+
     }
 }

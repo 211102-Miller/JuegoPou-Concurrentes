@@ -5,7 +5,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane fx:id="rootScene" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pelotascaen.controllers.HelloController">
    <children>
       <ImageView fitHeight="760.0" fitWidth="352.0" pickOnBounds="true" preserveRatio="true">
@@ -18,8 +17,9 @@
             <Image url="@../../../assets/pouEmo.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnPrepara" layoutX="95.0" layoutY="620.0" mnemonicParsing="false" onMouseClicked="#btnPrepararOnMouse" text="preparar" />
-      <Button fx:id="btnIniciar" layoutX="200.0" layoutY="620.0" mnemonicParsing="false" onMouseClicked="#btnIniciarOnMouse" text="Iniciar" />
-      <Button fx:id="btnIniciarPou" layoutX="261.0" layoutY="620.0" mnemonicParsing="false" onMouseClicked="#btnIniciarPouOnMouse" text="IniciarPou" />
+      <Button fx:id="btnPrepara" layoutX="88.0" layoutY="652.0" mnemonicParsing="false" onMouseClicked="#btnPrepararOnMouse" text="preparar" />
+      <Button fx:id="btnIniciar" layoutX="207.0" layoutY="652.0" mnemonicParsing="false" onMouseClicked="#btnIniciarOnMouse" text="Iniciar" />
+      <Button fx:id="btnRight" layoutX="195.0" layoutY="606.0" mnemonicParsing="false" onMouseClicked="#btnRightOnMouse" text="&gt;" />
+      <Button fx:id="btnLeft" layoutX="138.0" layoutY="606.0" mnemonicParsing="false" onMouseClicked="#btnLeftOnMouse" text="&lt;" />
    </children>
 </AnchorPane>
