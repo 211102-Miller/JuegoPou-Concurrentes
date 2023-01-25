@@ -5,23 +5,22 @@ import java.util.Observable;
 public class MovePou extends Observable implements Runnable{
     private Pou pouPos;
     private boolean status;
-    private int distanciaX = 10;
     private boolean left= false;
 
     private boolean right = false;
 
     public void setRight(boolean right){
-        this.left=left;
+        this.right=right;
     }
     public void setRightCam(){
-        pouPos.setPouX(pouPos.getPouX() - 10);
+        pouPos.setPouX(pouPos.getPouX() - 0);
     }
 
     public void setLeft(boolean left){
         this.left=left;
     }
     public void setLeftCam(){
-        pouPos.setPouX(pouPos.getPouX() + 1);
+        pouPos.setPouX(pouPos.getPouX() + 0);
     }
 
     public void setPouPos(Pou pouPos){
@@ -42,15 +41,27 @@ public class MovePou extends Observable implements Runnable{
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            if(left == true){
-                pouPos.setPouX(pouPos.getPouX() + 10);
-                System.out.println("caca");
+            /*if(pouPos.getPouX() >= 0 || pouPos.getPouX() <= 500 ){*/
+                if(left == true){
+                    if(pouPos.getPouX() <= 290){
+                        pouPos.setPouX(pouPos.getPouX() + 10);
+                        System.out.println("Derecha");
+
+                    }
+                    left = false;
+                }
+                else if (right == true){
+                    if (pouPos.getPouX() >= 0){
+                        pouPos.setPouX(pouPos.getPouX() - 10);
+                        System.out.println("Izquierda");
+                    }
+                    right=false;
+                }
+            /*}
+            else{
                 left = false;
-            }
-            else if (right == true){
-                pouPos.setPouX(pouPos.getPouX() - 10);
-                right=false;
-            }
+                right = false;
+            }*/
 
             /*if(pouPos.getPouX() > 290){
                 distanciaX *= -1;
