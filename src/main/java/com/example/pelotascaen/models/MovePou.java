@@ -44,7 +44,7 @@ public class MovePou extends Observable implements Runnable{
             /*if(pouPos.getPouX() >= 0 || pouPos.getPouX() <= 500 ){*/
                 if(left == true){
                     if(pouPos.getPouX() <= 290){
-                        pouPos.setPouX(pouPos.getPouX() + 10);
+                        pouPos.setPouX(pouPos.getPouX() + 30);
                         System.out.println("Derecha");
 
                     }
@@ -52,7 +52,7 @@ public class MovePou extends Observable implements Runnable{
                 }
                 else if (right == true){
                     if (pouPos.getPouX() >= 0){
-                        pouPos.setPouX(pouPos.getPouX() - 10);
+                        pouPos.setPouX(pouPos.getPouX() - 30);
                         System.out.println("Izquierda");
                     }
                     right=false;
