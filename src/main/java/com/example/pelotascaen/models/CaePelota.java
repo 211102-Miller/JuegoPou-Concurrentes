@@ -17,6 +17,11 @@ public class CaePelota extends Observable implements Runnable{
     }
     int numero = (int)(Math.random()*300+1);
 
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+
     @Override
     public void run() {
 

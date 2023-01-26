@@ -149,6 +149,12 @@ public class HelloController implements Observer {
             }
 
 
+        }if (comida1.getBoundsInParent().intersects(pueEmo.getBoundsInParent())) {
+            moverPou.setStatus(false);
+            moverCirculo1.setStatus(false);
+            moviComida[0].setStatus(false);
+            moviComida[1].setStatus(false);
+            System.out.println("aaaaaaaaaaaaaaaaaaaa");
         }
 
 
