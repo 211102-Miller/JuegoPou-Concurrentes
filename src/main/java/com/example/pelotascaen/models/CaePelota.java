@@ -5,8 +5,9 @@ import java.util.Random;
 
 public class CaePelota extends Observable implements Runnable{
     private Pelota pelotaPos;
-    private boolean status;
+    private boolean status, reinicio = false;
     private Random random;
+
 
 
     public void setPelotaPos(Pelota pelotaPos){
@@ -19,6 +20,10 @@ public class CaePelota extends Observable implements Runnable{
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public void setReinicio(boolean reinicio){
+        this.reinicio = reinicio;
     }
 
 
@@ -37,12 +42,19 @@ public class CaePelota extends Observable implements Runnable{
                 throw new RuntimeException(e);
             }
             if(pelotaPos.getY() >= 733){
-                 numero = (int)(Math.random()*300+1);
+                numero = (int)(Math.random()*300+1);
                 pelotaPos.setY(0);
                 pelotaPos.setX(numero);
                 System.out.println("jijijji");
             }
-        System.out.println("pasooo");
+            if(reinicio){
+                reinicio = false;
+                numero = (int)(Math.random()*300+1);
+                pelotaPos.setY(0);
+                pelotaPos.setX(numero);
+
+                System.out.println("paso 1");
+            }
 
     }
 }}

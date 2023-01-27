@@ -4,19 +4,25 @@ import com.example.pelotascaen.models.CaePelota;
 import com.example.pelotascaen.models.MovePou;
 import com.example.pelotascaen.models.Pelota;
 import com.example.pelotascaen.models.Pou;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 
+import java.security.PrivateKey;
 import java.util.Observable;
 import java.util.Observer;
 
 public class HelloController implements Observer {
+
+    private int contador = 0;
+    private Pelota comparacion;
 
     @FXML
     private AnchorPane rootScene;
@@ -28,6 +34,8 @@ public class HelloController implements Observer {
     private Button btnLeft;
     @FXML
     private Button btnRight;
+    @FXML
+    private TextField btnContador;
 
     //Imagenes de las comidas
     private ImageView comida1;
@@ -40,7 +48,6 @@ public class HelloController implements Observer {
     private CaePelota moverCirculo1;
 
     private CaePelota [] moviComida = new CaePelota[5];
-
 
 
     private MovePou moverPou;
@@ -128,33 +135,30 @@ public class HelloController implements Observer {
     public void update(Observable o, Object arg) {
         if(o instanceof MovePou){
             Pou posiPou = (Pou) arg;
-            pueEmo.setLayoutX(posiPou.getPouX());
+            Platform.runLater(() -> pueEmo.setLayoutX(posiPou.getPouX()));
         }
         else if (o instanceof CaePelota){
             Pelota posiPelo =(Pelota) arg;
 
             switch (posiPelo.getId()){
                 case 1:
-                    comida1.setLayoutY(posiPelo.getY());
-                    comida1.setLayoutX(posiPelo.getX());
+                    Platform.runLater(() -> comida1.setLayoutY(posiPelo.getY()));
+                    Platform.runLater(() -> comida1.setLayoutX(posiPelo.getX()));
                     break;
                 case 2:
-                    comida2.setLayoutY(posiPelo.getY());
-                    comida2.setLayoutX(posiPelo.getX());
+                    Platform.runLater(() -> comida2.setLayoutY(posiPelo.getY()));
+                    Platform.runLater(() -> comida2.setLayoutX(posiPelo.getX()));
                     break;
                 case 3:
-                    comida3.setLayoutY(posiPelo.getY());
-                    comida3.setLayoutX(posiPelo.getX());
+                    Platform.runLater(() -> comida3.setLayoutY(posiPelo.getY()));
+                    Platform.runLater(() -> comida3.setLayoutX(posiPelo.getX()));
                     break;
             }
 
 
         }if (comida1.getBoundsInParent().intersects(pueEmo.getBoundsInParent())) {
-            moverPou.setStatus(false);
-            moverCirculo1.setStatus(false);
-            moviComida[0].setStatus(false);
-            moviComida[1].setStatus(false);
-            System.out.println("aaaaaaaaaaaaaaaaaaaa");
+            moverCirculo1.setReinicio(true);
+
         }
 
 
