@@ -42,6 +42,10 @@ public class HelloController implements Observer {
     private ImageView comida2;
     private ImageView comida3;
 
+    //Imagenes de los objetos
+    private ImageView obstaculo1;
+    private ImageView obstaculo2;
+
     @FXML
     private ImageView pueEmo; //Imagen Pou
 
@@ -56,27 +60,42 @@ public class HelloController implements Observer {
     void btnIniciarOnMouse(MouseEvent event) {
 
         //Movimiento de la comida 1
-        moverCirculo1 = new CaePelota();
-        moverCirculo1.setPelotaPos(new Pelota(1,0,0));
-        moverCirculo1.addObserver(this);
-        Thread hilo1 = new Thread(moverCirculo1);
+        moviComida[0] = new CaePelota();
+        moviComida[0].setPelotaPos(new Pelota(1,0,0));
+        moviComida[0].addObserver(this);
+        Thread hilo1 = new Thread(moviComida[0]);
         hilo1.start();
         System.out.println("paso aqui");
 
         //Movimiento de comida 2
 
-        moviComida[0] = new CaePelota();
-        moviComida[0].setPelotaPos(new Pelota(2,0,0));
-        moviComida[0].addObserver(this);
-        Thread hilo3 = new Thread(moviComida[0]);
+        moviComida[1] = new CaePelota();
+        moviComida[1].setPelotaPos(new Pelota(2,0,0));
+        moviComida[1].addObserver(this);
+        Thread hilo3 = new Thread(moviComida[1]);
         hilo3.start();
 
         //Movimiento de comida 3
-        moviComida[1] = new CaePelota();
-        moviComida[1].setPelotaPos(new Pelota(3,0,0));
-        moviComida[1].addObserver(this);
-        Thread hilo4 = new Thread(moviComida[1]);
+        moviComida[2] = new CaePelota();
+        moviComida[2].setPelotaPos(new Pelota(3,0,0));
+        moviComida[2].addObserver(this);
+        Thread hilo4 = new Thread(moviComida[2]);
         hilo4.start();
+
+        //Movimiento de obstaculo 1
+        moviComida[3] = new CaePelota();
+        moviComida[3].setPelotaPos(new Pelota(4,0,0));
+        moviComida[3].addObserver(this);
+        Thread hilo5 = new Thread(moviComida[3]);
+        hilo5.start();
+
+        //Movimiento de obstaculo 2
+        moviComida[4] = new CaePelota();
+        moviComida[4].setPelotaPos(new Pelota(5,0,0));
+        moviComida[4].addObserver(this);
+        Thread hilo6 = new Thread(moviComida[4]);
+        hilo6.start();
+
 
 
         //Movimiento del Pou
@@ -96,23 +115,33 @@ public class HelloController implements Observer {
         comida1 = new ImageView(new Image(getClass().getResourceAsStream("/assets/galletaOreo.gif")));
         comida1.setFitHeight(50);
         comida1.setFitWidth(50);
-        comida1.setLayoutX(0);
-        comida1.setLayoutY(0);
-        rootScene.getChildren().addAll(comida1);
+        comida1.setLayoutX(10);
+        comida1.setLayoutY(-30);
 
         comida2 = new ImageView(new Image(getClass().getResourceAsStream("/assets/Mazapan.gif")));
-        comida2.setFitHeight(50);
-        comida2.setFitWidth(50);
-        comida2.setLayoutX(0);
-        comida2.setLayoutY(0);
-        rootScene.getChildren().addAll(comida2);
+        comida2.setFitHeight(70);
+        comida2.setFitWidth(70);
+        comida2.setLayoutX(80);
+        comida2.setLayoutY(-30);
 
         comida3 = new ImageView(new Image(getClass().getResourceAsStream("/assets/Pizza.gif")));
         comida3.setFitHeight(50);
         comida3.setFitWidth(50);
-        comida3.setLayoutX(0);
-        comida3.setLayoutY(0);
-        rootScene.getChildren().addAll(comida3);
+        comida3.setLayoutX(120);
+        comida3.setLayoutY(-30);
+
+        obstaculo1 = new ImageView(new Image(getClass().getResourceAsStream("/assets/Converse.gif")));
+        obstaculo1.setFitWidth(50);
+        obstaculo1.setFitHeight(50);
+        obstaculo1.setLayoutY(-30);
+        obstaculo1.setLayoutX(200);
+
+        obstaculo2 = new ImageView(new Image(getClass().getResourceAsStream("/assets/Disco.gif")));
+        obstaculo2.setFitWidth(40);
+        obstaculo2.setFitHeight(40);
+        obstaculo2.setLayoutY(-30);
+        obstaculo2.setLayoutX(280);
+        rootScene.getChildren().addAll(comida1,comida2,comida3,obstaculo1,obstaculo2);
 
 
     }
@@ -153,13 +182,27 @@ public class HelloController implements Observer {
                     Platform.runLater(() -> comida3.setLayoutY(posiPelo.getY()));
                     Platform.runLater(() -> comida3.setLayoutX(posiPelo.getX()));
                     break;
+                case 4:
+                    Platform.runLater(() -> obstaculo1.setLayoutY(posiPelo.getY()));
+                    Platform.runLater(() -> obstaculo1.setLayoutX(posiPelo.getX()));
+                    break;
+                case 5:
+                    Platform.runLater(() -> obstaculo2.setLayoutY(posiPelo.getY()));
+                    Platform.runLater(() -> obstaculo2.setLayoutX(posiPelo.getX()));
+                    break;
             }
-
-
-        }if (comida1.getBoundsInParent().intersects(pueEmo.getBoundsInParent())) {
-            moverCirculo1.setReinicio(true);
+            //Obtencion de los puntos con la comida
+        }if (comida1.getBoundsInParent().intersects(pueEmo.getBoundsInParent())){
+            moviComida[0].setReinicio(true);
 
         }
+        if(comida2.getBoundsInParent().intersects(pueEmo.getBoundsInParent())){
+            moviComida[1].setReinicio(true);
+        }
+        if(comida3.getBoundsInParent().intersects(pueEmo.getBoundsInParent())){
+            moviComida[2].setReinicio(true);
+        }
+
 
 
     }
