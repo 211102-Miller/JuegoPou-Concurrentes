@@ -26,6 +26,9 @@ public class CaePelota extends Observable implements Runnable{
         this.reinicio = reinicio;
     }
 
+    static int contador = 0;
+    private int resultado;
+
 
     @Override
     public void run() {
@@ -33,7 +36,6 @@ public class CaePelota extends Observable implements Runnable{
         pelotaPos.setX(numero);
         while (status){
             pelotaPos.setY(pelotaPos.getY() + 4);
-
             setChanged();
             notifyObservers(pelotaPos);
             try {
@@ -52,9 +54,14 @@ public class CaePelota extends Observable implements Runnable{
                 numero = (int)(Math.random()*300+1);
                 pelotaPos.setY(0);
                 pelotaPos.setX(numero);
+                contador = contador +1;
+                resultado = contador -2;
+                System.out.println(resultado);
 
                 System.out.println("paso 1");
             }
+
+
 
     }
 }}

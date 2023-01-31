@@ -36,6 +36,8 @@ public class HelloController implements Observer {
     private Button btnRight;
     @FXML
     private TextField btnContador;
+    @FXML
+    private Label labelScore;
 
     //Imagenes de las comidas
     private ImageView comida1;
@@ -202,6 +204,24 @@ public class HelloController implements Observer {
         if(comida3.getBoundsInParent().intersects(pueEmo.getBoundsInParent())){
             moviComida[2].setReinicio(true);
         }
+        //Detencion del Juego
+        if(obstaculo1.getBoundsInParent().intersects(pueEmo.getBoundsInParent())){
+            moverPou.setStatus(false);
+            moviComida[0].setStatus(false);
+            moviComida[1].setStatus(false);
+            moviComida[2].setStatus(false);
+            moviComida[3].setStatus(false);
+            moviComida[4].setStatus(false);
+        }
+        if(obstaculo2.getBoundsInParent().intersects(pueEmo.getBoundsInParent())){
+            moverPou.setStatus(false);
+            moviComida[0].setStatus(false);
+            moviComida[1].setStatus(false);
+            moviComida[2].setStatus(false);
+            moviComida[3].setStatus(false);
+            moviComida[4].setStatus(false);
+        }
+
 
 
 

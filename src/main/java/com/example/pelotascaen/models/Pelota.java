@@ -4,7 +4,7 @@ public class Pelota {
     private int id;
     private int x;
     private int y;
-
+    private int score;
     public Pelota(int id, int x, int y) {
         this.id = id;
         this.x = x;
@@ -33,5 +33,13 @@ public class Pelota {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 }
